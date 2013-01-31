@@ -1,0 +1,589 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        {block:Description}<meta name="description" content="{MetaDescription}" />{/block:Description}
+        <title>{Title} {block:PostTitle} {PostTitle} {/block:PostTitle}</title>
+
+        <link rel="shortcut icon" href="{Favicon}">
+        <link rel="alternate" type="application/rss+xml" href="{RSS}">
+
+        <meta name="viewport"  content="width=660"/>
+        <link rel="apple-touch-icon" href="{PortraitURL-128}"></link>
+
+		<meta name="text:Google Analytics ID" content="" />
+        <meta name="text:Disqus Shortname" content="" />
+
+		<link rel="stylesheet" href="http://static.tumblr.com/anfpypi/0Iim2p5oa/feather.css" />
+
+		<!-- DEFAULT COLORS -->
+        <meta name="color:Background" content="#fff"/>
+		<meta name="color:Text" content="#919191"/>
+		<meta name="color:Links" content="#6DC0A9"/>
+		<meta name="color:Links Hover" content="#4A8D75"/>
+		<meta name="color:Heading" content="#000"/>
+		<meta name="color:Heading Hover" content="#000"/>
+		<meta name="color:Description" content="#919191"/>
+		<meta name="color:Permalink" content="#3F3F3F"/>
+		<meta name="color:Permalink Hover" content="#000000"/>
+		<meta name="color:Text Alt" content="#919191"/>
+
+		<style type="text/css" media="screen">
+
+			{CustomCSS}
+
+			body {
+				background: {color:Background};
+				color: {color:Text}; }
+
+			#footer .attribution a, #footer .attribution a:link, #footer .attribution a:visited, #header #description a, #header #description a:link, #header #description a:visited, a { color: {color:Links}; }
+
+			a:hover { color: {color:Links Hover}; }
+
+			#header h1 a { color: {color:Heading}; }
+
+			#header h1 a:hover { color: {color:Heading Hover}; }
+
+			#description { color: {color:Description}; }
+
+			.permalink a { color: {color:Permalink}; }
+
+			.permalink a:hover { color: {color:Permalink Hover}; }
+
+			#footer, .quote p, .photo p, .video p, .audio p, #content .conversation, .text blockquote { color: {color:Text Alt}; }
+
+            #disqus_thread { width: 500px; padding: 0 0 75px 0; }
+
+
+            /* kyle's stuff */
+            /* i should move this to my own css file later */
+            body, html {
+                width: 100%;
+                padding: 0;
+                margin: 0;
+                font-size: 13px;
+                background: #fff;
+            }
+            #content {
+                width: 820px;
+                margin: 0 auto;
+                padding-top: 10px;
+            }
+            #header {
+                position: fixed;
+                top: 0;
+                left: 50%;
+                width: 300px;
+                padding-left: 130px;
+                padding-top: 14px;
+                text-shadow: 0 1px 1px #fff;
+            }
+            #header h1:hover .version {
+                opacity: 1;
+            }
+            .version {
+                cursor: pointer;
+                opacity: 0;
+            }
+            .portrait {
+                margin-top: 20px;
+            }
+            .portrait img {
+                padding: 5px;
+                background: white;
+                border: 1px solid #ddd;
+            }
+            #description {
+                margin: 0 0 10px;
+            }
+            .followed img {
+                border: 1px solid white;
+            }
+
+            .post {
+                padding: 10px;
+                margin-bottom: 3em;
+                background: #fff;
+                box-shadow: 0 0 10px #aaa;
+            }
+            .post img {
+                max-width: 500px;
+            }
+            .permalink {
+                display: none;
+            }
+
+            .photo-wrapper {
+                position: relative;
+
+                float: left;
+                line-height: 0;
+                overflow: hidden;
+            }
+            .photo-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 500px;
+                height: 500px;
+                background: -webkit-radial-gradient(closest-side, #fff, rgba(255,255,255,0));
+                background: -moz-radial-gradient(closest-side, #fff, rgba(255,255,255,0));
+                opacity: 0;
+            }
+            .photo-wrapper .photo-overlay:hover {
+                opacity: 0.5;
+            }
+
+            .quote h2 {
+                position: relative;
+                padding: 0 30px;
+                margin: 10px 0;
+                font-style: italic;
+            }
+            .quote-l, .quote-r {
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                font-size: 40px;
+                color: #aaa;
+                font-style: normal;
+            }
+            .quote-l {
+                top: 0;
+                left: 0;
+            }
+            .quote-r {
+                right: 0;
+                bottom: 0;
+            }
+
+            .text h2 {
+                font-size: 19px;
+                font-weight: bold;
+            }
+
+            .link h2 a {
+                font-size: 16px;
+            }
+
+
+
+            body.crass {
+                font-family: Helvetica, sans-serif;
+                background: white;
+                font-size: 15px;
+                color: #ff0000;
+            }
+            .crass p {
+                color: inherit;
+            }
+            .crass #header h1 a, .crass #content .text h2 {
+                font-family: inherit;
+                font-weight: bold;
+                color: rgba(0,255,0,0.5);
+                text-shadow: -5px -5px 0 rgba(255,0,0,0.5), 5px 5px 0 rgba(0,0,255,0.5);
+            }
+            .crass #content .text h2 {
+                font-size: 30px;
+            }
+            .crass h1 {
+                font-size: 40px;
+                font-weight: bold;
+                font-family: inherit;
+                color: rgba(0,255,0,0.5);
+                text-shadow: -5px -5px 0 rgba(255,0,0,0.5), 5px 5px 0 rgba(0,0,255,0.5);
+            }
+            .crass .post {
+                box-shadow: none;
+                border-bottom: 5px dashed rgba(255,0,255,1);
+            }
+            .crass .portrait img {
+                border: none;
+                padding: 0;
+            }
+            .crass a {
+                color: blue;
+            }
+            .crass a:hover {
+                text-decoration: line-through;
+            }
+            .crass #description {
+                color: #0000ff;
+            }
+
+		</style>
+
+    </head>
+
+    <body>
+	    <!-- kyle's js -->
+        <script type="text/javascript" src="http://kylejwarren.com/js/underscore-min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script type="text/javascript">
+            if (!localStorage.cssVersion) {
+                localStorage.cssVersion = 'pretentious';
+            }
+
+            document.body.className = localStorage.cssVersion;
+
+            if (location.pathname === '/') {
+                var gettingPage = false,
+                    gotPage = 1;
+
+                window.addEventListener('scroll', _.throttle(function () {
+                    if (!gettingPage && gotPage < {TotalPages} && $('#footer')[0].offsetTop - window.scrollY < window.innerHeight + 200) {
+                        gettingPage = true;
+                        gotPage++;
+                        $('<div/>').insertBefore('#navigation').load('/page/' + gotPage + ' #content', function () {
+                            gettingPage = false;
+                        });
+                        $('#navigation').remove();
+                    }
+                }, 100));
+            }
+        </script>
+
+
+        <div id="header">
+			<h1><a href="/">{Title}</a> <span id="css-version" class="version"></span></h1>
+
+            <div><a href="http://kylejwarren.com">My Website</a></div>
+            <div><a href="http://twitter.com/malectro">My Tweets</a></div>
+
+            <div class="portrait"><img src="{PortraitURL-128}" /></div>
+
+	            <p id="description">
+			{block:HasPages}
+				{block:Pages}<a href="{URL}">{Label}</a> &nbsp;&nbsp;{/block:Pages}
+			{/block:HasPages}
+
+			{block:AskEnabled}<a href="/ask">ask</a> &nbsp;&nbsp;{/block:AskEnabled}
+            {block:SubmissionsEnabled}<a href="/submit">{SubmitLabel}</a> &nbsp;&nbsp;{/block:SubmissionsEnabled}
+
+            {block:Description}
+                {Description}
+            {/block:Description}
+                </p>
+
+            {block:Following}
+                <div class="following">
+                    {block:Followed}
+                        <a class="followed" href="{FollowedURL}">
+                            <img title="{FollowedName}" src="{FollowedPortraitURL-30}" />
+                        </a>
+                    {/block:Followed}
+                </div>
+            {/block:Following}
+
+   		</div>
+
+        <!-- more js -->
+        <script type="text/javascript">
+            var version = document.getElementById('css-version');
+            version.innerHTML = '(' + localStorage.cssVersion + ' version)';
+            version.onclick = function () {
+                if (localStorage.cssVersion === 'crass') {
+                    localStorage.cssVersion = 'pretentious';
+                }
+                else {
+                    localStorage.cssVersion = 'crass';
+                }
+                version.innerHTML = '(' + localStorage.cssVersion + ' version)';
+                document.body.className = localStorage.cssVersion;
+            };
+        </script>
+
+
+        <div id="content">
+
+
+            {block:Posts}
+
+
+				{block:Quote}
+
+					<div class="permalink">
+						{block:IfNotDisqusShortname}<a href="{Permalink}">&rarr;</a>{/block:IfNotDisqusShortname}
+						{block:Date}{block:Date}{block:IfDisqusShortname}<a href="{Permalink}#disqus_thread"></a>{/block:IfDisqusShortname}{/block:Date}{/block:Date}
+					</div>
+
+					<div class="quote post">
+
+					    <h2><div class="quote-l">&ldquo;</div>{Quote}<div class="quote-r">&rdquo;</div></h2>
+
+						{block:Source}
+                            <p>{Source}</p>
+                        {/block:Source}
+
+						<div class="postmeta">{block:Date}<a href="{Permalink}">{TimeAgo}</a>&nbsp; {/block:Date}<a href="{Permalink}" style="text-transform:lowercase;">{lang:Notes} ({NoteCount})</a></div>
+
+					</div>
+
+					{block:PostNotes}
+						<div>{PostNotes}</div>
+					{/block:PostNotes}
+
+				{/block:Quote}
+
+
+				{block:Photo}
+
+					<div class="permalink">
+						{block:IfNotDisqusShortname}<a href="{Permalink}">&rarr;</a>{/block:IfNotDisqusShortname}
+						{block:Date}{block:IfDisqusShortname}<a href="{Permalink}#disqus_thread"></a>{/block:IfDisqusShortname}{/block:Date}
+					</div>
+
+					<div class="photo post">
+
+
+
+						{LinkOpenTag}
+					    	<div class="photo-wrapper"><img src="{PhotoURL-500}" alt="{PhotoAlt}"/><div class="photo-overlay"></div></div>
+						{LinkCloseTag}
+                        <div style="clear: both;"></div>
+
+						{block:Caption}
+                            <p>{Caption}</p>
+                        {/block:Caption}
+
+						<div class="postmeta">{block:Date}<a href="{Permalink}">{TimeAgo}</a>&nbsp; {/block:Date}<a href="{Permalink}" style="text-transform:lowercase;">{lang:Notes} ({NoteCount})</a></div>
+
+					</div>
+
+					{block:PostNotes}
+						<div>{PostNotes}</div>
+					{/block:PostNotes}
+
+                {/block:Photo}
+
+
+ 				{block:Video}
+
+					<div class="permalink">
+						{block:IfNotDisqusShortname}<a href="{Permalink}">&rarr;</a>{/block:IfNotDisqusShortname}
+						{block:Date}{block:IfDisqusShortname}<a href="{Permalink}#disqus_thread"></a>{/block:IfDisqusShortname}{/block:Date}
+					</div>
+
+					<div class="video post">
+
+						{Video-500}
+
+						{block:Caption}
+                            <p>{Caption}</p>
+                        {/block:Caption}
+
+						<div class="postmeta">{block:Date}<a href="{Permalink}">{TimeAgo}</a>&nbsp; {/block:Date}<a href="{Permalink}" style="text-transform:lowercase;">{lang:Notes} ({NoteCount})</a></div>
+
+					</div>
+
+					{block:PostNotes}
+						<div>{PostNotes}</div>
+					{/block:PostNotes}
+
+                {/block:Video}
+
+
+				{block:Link}
+
+					<div class="permalink">
+						{block:IfNotDisqusShortname}<a href="{Permalink}">&rarr;</a>{/block:IfNotDisqusShortname}
+						{block:Date}{block:IfDisqusShortname}<a href="{Permalink}#disqus_thread"></a>{/block:IfDisqusShortname}{/block:Date}
+					</div>
+
+					<div class="link post">
+
+					    <h2><a href="{URL}" {Target}>{Name}</a></h2>
+
+						{block:Description}
+							<p>{Description}</p>
+						{/block:Description}
+
+						<div class="postmeta">{block:Date}<a href="{Permalink}">{TimeAgo}</a>&nbsp; {/block:Date}<a href="{Permalink}" style="text-transform:lowercase;">{lang:Notes} ({NoteCount})</a></div>
+
+					</div>
+
+					{block:PostNotes}
+						<div>{PostNotes}</div>
+					{/block:PostNotes}
+
+				{/block:Link}
+
+
+				{block:Chat}
+
+					<div class="permalink">
+						{block:IfNotDisqusShortname}<a href="{Permalink}">&rarr;</a>{/block:IfNotDisqusShortname}
+						{block:Date}{block:IfDisqusShortname}<a href="{Permalink}#disqus_thread"></a>{/block:IfDisqusShortname}{/block:Date}
+					</div>
+
+					<div class="conversation post">
+
+						{block:Title}
+                            <h2>{Title}</h2>
+                        {/block:Title}
+
+						<ul>
+							{block:Lines}
+								<li class="member{UserNumber}">
+									{block:Label}
+                                        <span class="label">{Label}</span>
+                                    {/block:Label}
+									{Line}
+								</li>
+							{/block:Lines}
+						</ul>
+
+						<div class="postmeta">{block:Date}<a href="{Permalink}">{TimeAgo}</a>&nbsp; {/block:Date}<a href="{Permalink}" style="text-transform:lowercase;">{lang:Notes} ({NoteCount})</a></div>
+
+					</div>
+
+					{block:PostNotes}
+						<div>{PostNotes}</div>
+					{/block:PostNotes}
+
+				{/block:Chat}
+
+
+                {block:Text}
+
+					<div class="permalink">
+						{block:IfNotDisqusShortname}<a href="{Permalink}">&rarr;</a>{/block:IfNotDisqusShortname}
+						{block:Date}{block:IfDisqusShortname}<a href="{Permalink}#disqus_thread"></a>{/block:IfDisqusShortname}{/block:Date}
+					</div>
+
+                    <div class="text post">
+
+                        {block:Title}
+                            <h2>{Title}</h2>
+                        {/block:Title}
+
+                        {Body}
+
+						<div class="postmeta">{block:Date}<a href="{Permalink}">{TimeAgo}</a>&nbsp; {/block:Date}<a href="{Permalink}" style="text-transform:lowercase;">{lang:Notes} ({NoteCount})</a></div>
+
+                    </div>
+
+					{block:PostNotes}
+						<div>{PostNotes}</div>
+					{/block:PostNotes}
+
+                {/block:Text}
+
+
+				{block:Audio}
+
+					<div class="permalink">
+						{block:IfNotDisqusShortname}<a href="{Permalink}">&rarr;</a>{/block:IfNotDisqusShortname}
+						{block:Date}{block:IfDisqusShortname}<a href="{Permalink}#disqus_thread"></a>{/block:IfDisqusShortname}{/block:Date}
+					</div>
+
+					<div class="post audio">
+
+						{AudioPlayerGrey}
+
+						<div class="audio_details">{block:Artist}<b>{Artist}</b>{/block:Artist} &ndash; {block:TrackName}{TrackName}{/block:TrackName} <span class="playcount">({PlayCountWithLabel})</span></div>
+						<div class="audio_caption">{block:Caption}{Caption}{/block:Caption}</div>
+
+						{block:ExternalAudio}
+							<p><a href="{ExternalAudioURL}">{lang:Download}</a></p>
+						{/block:ExternalAudio}
+
+						<div class="postmeta">{block:Date}<a href="{Permalink}">{TimeAgo}</a>&nbsp; {/block:Date}<a href="{Permalink}" style="text-transform:lowercase;">{lang:Notes} ({NoteCount})</a></div>
+
+					</div>
+
+					{block:IfDisqusShortname}
+                    {block:Permalink}
+                    <div id="disqus_thread"></div>
+                    <script type="text/javascript" src="http://disqus.com/forums/{text:Disqus Shortname}/embed.js"></script>
+                    <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
+                    {/block:Permalink}
+                    {/block:IfDisqusShortname}
+
+					{block:PostNotes}
+						<div>{PostNotes}</div>
+					{/block:PostNotes}
+
+				{/block:Audio}
+
+
+			{/block:Posts}
+
+
+
+
+			{block:Pagination}
+
+				<div id="navigation">
+
+					{block:NextPage}
+		                <a href="{NextPage}" id="nav-next" style="text-transform:lowercase;">&larr; {lang:Older}</a>
+		            {/block:NextPage}
+					<span class="page_number"> &nbsp; {CurrentPage}/{TotalPages} &nbsp;</span>
+					{block:PreviousPage}
+	                	<a href="{PreviousPage}" id="nav-prev" style="text-transform:lowercase;">{lang:Newer} &rarr;</a>
+		            {/block:PreviousPage}
+
+				</div>
+
+			 {/block:Pagination}
+
+			{block:PermalinkPagination}
+
+				<div id="navigation">
+
+					{block:PreviousPost}
+	                	<a href="{PreviousPost}" id="nav-prev" style="text-transform:lowercase;">&larr; {lang:Older}</a>
+		            {/block:PreviousPost}
+					<span class="page_number"> &nbsp; {CurrentPage}/{TotalPages} &nbsp;</span>
+					{block:NextPost}
+		                <a href="{NextPost}" id="nav-next" style="text-transform:lowercase;">{lang:Newer} &rarr;</a>
+		            {/block:NextPost}
+
+				</div>
+
+			{/block:PermalinkPagination}
+
+
+
+
+			<!-- Footer -->
+			<div id="footer">
+
+				<form style="display: none;" action="/search" method="get" id="searchform">
+					<p><input type="search" name="q" value="" results="5" /></p>
+				</form>
+
+			</div>
+
+
+
+        </div>
+
+	{block:IfGoogleAnalyticsID}
+		<script type="text/javascript">var gaJsHost=(("https:"==document.location.protocol)?"https://ssl.":"http://www.");document.write(unescape("%3Cscript src='"+gaJsHost+"google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));</script><script type="text/javascript">try{var pageTracker=_gat._getTracker("{text:Google Analytics ID}");pageTracker._trackPageview()}catch(err){}</script>
+	{block:IfGoogleAnalyticsID}
+
+	{block:IfDisqusShortname}
+        <script type="text/javascript">
+            //<![CDATA[
+            (function() {
+                var links = document.getElementsByTagName('a');
+                var query = '?';
+                for(var i = 0; i < links.length; i++) {
+                    if(links[i].href.indexOf('#disqus_thread') >= 0) {
+                        query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+                    }
+                }
+                document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/{text:Disqus Shortname}/get_num_replies.js' + query + '"></' + 'script>');
+            })();
+            //]]>
+        </script>
+    {/block:IfDisqusShortname}
+
+    </body>
+
+</html>
